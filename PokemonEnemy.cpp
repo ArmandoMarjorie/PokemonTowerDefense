@@ -1,17 +1,13 @@
 #include "PokemonEnemy.h"
 
 PokemonEnemy::PokemonEnemy() :
-    x(100),
-    y(100),
-    speed(1.0)
+    Pokemon()
 {
 
 }
 
-PokemonEnemy::PokemonEnemy(int beginX, int beginY, float s) :
-    x(beginX),
-    y(beginY),
-    speed(s)
+PokemonEnemy::PokemonEnemy(int beginX, int beginY, int s) :
+    Pokemon(beginX, beginY, s)
 {
 
 }
@@ -21,6 +17,7 @@ PokemonEnemy::~PokemonEnemy()
 
 }
 
+/*
 void PokemonEnemy::update()
 {
     x += speed;
@@ -33,3 +30,4 @@ int PokemonEnemy::getY() const
 {
     return y;
 }
+*/

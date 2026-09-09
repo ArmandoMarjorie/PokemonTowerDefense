@@ -1,19 +1,24 @@
 #ifndef POKEMONENEMY_H
 #define POKEMONENEMY_H
 
-class PokemonEnemy
+#include "Pokemon.h"
+
+#include <QPoint>
+#include <vector>
+
+class PokemonEnemy : public Pokemon
 {
 private:
-    int x;
-    int y;
-    float speed;
+    std::vector<QPoint> path;
 public:
     PokemonEnemy();
-    PokemonEnemy(int beginX, int beginY, float s);
+    PokemonEnemy(int beginX, int beginY, int s);
     ~PokemonEnemy();
+    /*
     void update();
     int getX() const;
     int getY() const;
+    */
 };
 
 #endif // POKEMONENEMY_H

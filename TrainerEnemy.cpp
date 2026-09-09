@@ -4,7 +4,7 @@
 
 TrainerEnemy::TrainerEnemy()
 {
-    team.push_back(new PokemonEnemy(200,200,1.5));
+    team.push_back(new PokemonEnemy(200,200,3));
     team.push_back(new PokemonEnemy(300,300,2));
 }
 
@@ -33,9 +33,7 @@ PokemonEnemy* TrainerEnemy::getPokemonEnemy(unsigned int numPkmn) const
 void TrainerEnemy::addPokemon()
 {
     if(team.size() < NB_POKEMON_MAX)
-    {
         team.push_back(new PokemonEnemy());
-    }
 }
 
 void TrainerEnemy::update()
