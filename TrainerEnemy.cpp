@@ -4,8 +4,9 @@
 
 TrainerEnemy::TrainerEnemy()
 {
-    team.push_back(new PokemonEnemy(200,200,3));
-    team.push_back(new PokemonEnemy(300,300,2));
+    addPokemon(100, 100, 1);
+    addPokemon(200, 200, 2);
+    addPokemon(300, 300, 3);
 }
 
 TrainerEnemy::~TrainerEnemy()
@@ -30,10 +31,12 @@ PokemonEnemy* TrainerEnemy::getPokemonEnemy(unsigned int numPkmn) const
     return nullptr;
 }
 
-void TrainerEnemy::addPokemon()
+void TrainerEnemy::addPokemon(int x,
+                              int y,
+                              int speed)
 {
     if(team.size() < NB_POKEMON_MAX)
-        team.push_back(new PokemonEnemy());
+        team.push_back(new PokemonEnemy(x, y, speed));
 }
 
 void TrainerEnemy::update()

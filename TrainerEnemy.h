@@ -4,6 +4,7 @@
 #include "PokemonEnemy.h"
 
 #include <vector>
+#include <QPoint>
 
 class TrainerEnemy
 {
@@ -16,7 +17,9 @@ public:
     void update();
     PokemonEnemy* getPokemonEnemy(unsigned int numPkmn) const;
     unsigned int getNbPokemon() const;
-    void addPokemon();
+    void addPokemon(int x,
+                    int y,
+                    int speed);
 };
 
 #endif // TRAINERENEMY_H

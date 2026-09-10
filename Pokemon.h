@@ -13,13 +13,15 @@ protected:
     PokemonType type; // use like this: type = PokemonType::GRASS;
 
     // Statistiques
+    int lvl;
     int speed; // passer à float plus tard
     float pv;
-    int level;
-    int statAttack;
-    int statDefense;
+    int atk;
+    int def;
+    int atkSpe;
+    int defSpe;
 
-    // Current position
+    // Current position : QPoint or just int x int y ?
     QPoint position;
 
 public:
