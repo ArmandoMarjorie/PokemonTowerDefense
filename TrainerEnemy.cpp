@@ -11,12 +11,7 @@ TrainerEnemy::TrainerEnemy()
 
 TrainerEnemy::~TrainerEnemy()
 {
-    for (unsigned int i=0; i<team.size(); ++i)
-    {
-        delete team[i];
-        team[i] = nullptr;
-    }
-    team.clear();
+
 }
 
 unsigned int TrainerEnemy::getNbPokemon() const
@@ -27,7 +22,7 @@ unsigned int TrainerEnemy::getNbPokemon() const
 PokemonEnemy* TrainerEnemy::getPokemonEnemy(unsigned int numPkmn) const
 {
     if(!team.empty() && numPkmn < team.size())
-        return team[numPkmn];
+        return team[numPkmn].get();
     return nullptr;
 }
 
@@ -36,11 +31,11 @@ void TrainerEnemy::addPokemon(int x,
                               int speed)
 {
     if(team.size() < NB_POKEMON_MAX)
-        team.push_back(new PokemonEnemy(x, y, speed));
+        team.push_back(std::make_unique<PokemonEnemy>(x, y, speed));
 }
 
 void TrainerEnemy::update()
 {
     for (unsigned int i=0; i<team.size(); ++i)
-        team[i]->update();
+        team[i]->update(); //Pokemon::update()
 }

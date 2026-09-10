@@ -5,20 +5,17 @@
 
 #include <QPoint>
 #include <vector>
+#include <memory>
 
 class PokemonEnemy : public Pokemon
 {
 private:
-    std::vector<QPoint> path;
+    std::vector<std::unique_ptr<QPoint>> path;
 public:
     PokemonEnemy();
     PokemonEnemy(int beginX, int beginY, int s);
     ~PokemonEnemy();
-    /*
-    void update();
-    int getX() const;
-    int getY() const;
-    */
+    void addInPath(int x, int y);
 };
 
 #endif // POKEMONENEMY_H

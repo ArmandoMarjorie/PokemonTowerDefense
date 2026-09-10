@@ -6,7 +6,7 @@
 class Game
 {
 private:
-    TrainerEnemy* trainerEnemy = nullptr;
+    std::unique_ptr<TrainerEnemy> trainerEnemy = nullptr;
 public:
     Game();
     ~Game();

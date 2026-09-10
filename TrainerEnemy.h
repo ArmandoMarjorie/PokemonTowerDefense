@@ -9,7 +9,7 @@
 class TrainerEnemy
 {
 private:
-    std::vector<PokemonEnemy*> team;
+    std::vector<std::unique_ptr<PokemonEnemy>> team;
 
 public:
     TrainerEnemy();

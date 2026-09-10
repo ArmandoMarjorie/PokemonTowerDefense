@@ -2,13 +2,12 @@
 
 Game::Game()
 {
-    trainerEnemy = new TrainerEnemy();
+    trainerEnemy = std::make_unique<TrainerEnemy>();
 }
 
 Game::~Game()
 {
-    delete trainerEnemy;
-    trainerEnemy = nullptr;
+
 }
 
 int Game::getPokemonEnemyX(unsigned int numPkmn) const

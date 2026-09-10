@@ -17,17 +17,7 @@ PokemonEnemy::~PokemonEnemy()
 
 }
 
-/*
-void PokemonEnemy::update()
+void PokemonEnemy::addInPath(int x, int y)
 {
-    x += speed;
+    path.push_back(std::make_unique<QPoint>(x, y));
 }
-int PokemonEnemy::getX() const
-{
-    return x;
-}
-int PokemonEnemy::getY() const
-{
-    return y;
-}
-*/
