@@ -7,8 +7,9 @@ GameWidget::GameWidget(QWidget* parent)
     : QWidget{parent}
 {
     timer = new QTimer(this);
-    game = std::make_unique<Game>();  // passage de pointeur à smart pointeur -> verif que tout est OK
-    clickPosition = QPoint(-100, -100);
+    game = std::make_unique<Game>();
+    map = std::make_unique<Map>();
+    //clickPosition = QPoint(-100, -100);
 
     connect(timer, &QTimer::timeout, this, &GameWidget::updateGame);
 
@@ -31,6 +32,8 @@ void GameWidget::paintEvent(QPaintEvent* event)
 {
     QPainter painter(this);
 
+    map->draw(painter, this->size());
+
     unsigned int nbPokemonEnemy = game->getNbPokemonEnemy();
     for(unsigned int numPkmn=0; numPkmn<nbPokemonEnemy; ++numPkmn)
     {
@@ -52,10 +55,11 @@ void GameWidget::paintEvent(QPaintEvent* event)
         //game->printPath(numPkmn);
     }
 }
-
+/*
 void GameWidget::mousePressEvent(QMouseEvent* event)
 {
     qDebug() << "Clic en :" << event->position();
     clickPosition = event->position().toPoint();
     update();
 }
+*/

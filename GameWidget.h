@@ -2,6 +2,7 @@
 #define GAMEWIDGET_H
 
 #include "Game.h"
+#include "Map.h"
 
 #include <QWidget>
 #include <QTimer>
@@ -14,9 +15,10 @@ class GameWidget : public QWidget
 
 private:
     QTimer* timer = nullptr;
-    QPoint clickPosition;
+    //QPoint clickPosition;
     QElapsedTimer elapsedTimer;
     std::unique_ptr<Game> game;
+    std::unique_ptr<Map> map;
 
 private slots:
     void updateGame();
@@ -27,7 +29,7 @@ public:
 
 protected:
     void paintEvent(QPaintEvent* event) override;
-    void mousePressEvent(QMouseEvent* event) override;
+    //void mousePressEvent(QMouseEvent* event) override;
 
 signals:
 };
