@@ -30,10 +30,14 @@ void GameWidget::updateGame()
 void GameWidget::paintEvent(QPaintEvent* event)
 {
     QPainter painter(this);
+
     unsigned int nbPokemonEnemy = game->getNbPokemonEnemy();
 
     for(unsigned int numPkmn=0; numPkmn<nbPokemonEnemy; ++numPkmn)
-        painter.drawEllipse(game->getPokemonEnemyX(numPkmn),game->getPokemonEnemyY(numPkmn),100,100);
+    {
+        const QPointF& position = game->getPokemonEnemyPosition(numPkmn);
+        painter.drawEllipse(position,50,50);
+    }
 }
 
 void GameWidget::mousePressEvent(QMouseEvent* event)

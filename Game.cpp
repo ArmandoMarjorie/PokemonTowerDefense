@@ -10,6 +10,11 @@ Game::~Game()
 
 }
 
+const QPointF& Game::getPokemonEnemyPosition(unsigned int numPkmn) const
+{
+    return trainerEnemy->getPokemonEnemy(numPkmn)->getPosition();
+}
+
 float Game::getPokemonEnemyX(unsigned int numPkmn) const
 {
     return trainerEnemy->getPokemonEnemy(numPkmn)->getX();

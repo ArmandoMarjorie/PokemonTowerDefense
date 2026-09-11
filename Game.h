@@ -11,6 +11,7 @@ public:
     Game();
     ~Game();
     void update(float dt);
+    const QPointF &getPokemonEnemyPosition(unsigned int numPkmn) const;
     float getPokemonEnemyX(unsigned int numPkmn) const;
     float getPokemonEnemyY(unsigned int numPkmn) const;
     unsigned int getNbPokemonEnemy() const;

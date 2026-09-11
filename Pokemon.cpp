@@ -21,8 +21,12 @@ Pokemon::~Pokemon()
 
 void Pokemon::update()
 {
-    //position.setX(position.x() + speed);
-    //x += speed;
+
+}
+
+const QPointF& Pokemon::getPosition() const
+{
+    return position;
 }
 
 float Pokemon::getX() const

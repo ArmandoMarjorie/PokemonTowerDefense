@@ -21,7 +21,7 @@ protected:
     int atkSpe;
     int defSpe;
 
-    // Current position : QPointF or just float x float y ?
+    // Current position
     QPointF position;
 
 public:
@@ -29,6 +29,7 @@ public:
     Pokemon(float beginX, float beginY, float s);
     ~Pokemon();
     void update();
+    const QPointF& getPosition() const;
     float getX() const;
     float getY() const;
 };
