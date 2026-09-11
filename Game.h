@@ -10,9 +10,9 @@ private:
 public:
     Game();
     ~Game();
-    void update();
-    int getPokemonEnemyX(unsigned int numPkmn) const;
-    int getPokemonEnemyY(unsigned int numPkmn) const;
+    void update(float dt);
+    float getPokemonEnemyX(unsigned int numPkmn) const;
+    float getPokemonEnemyY(unsigned int numPkmn) const;
     unsigned int getNbPokemonEnemy() const;
 };
 

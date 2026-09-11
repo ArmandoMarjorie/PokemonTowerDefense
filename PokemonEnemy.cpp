@@ -1,13 +1,15 @@
 #include "PokemonEnemy.h"
 
+#include <QDebug>
+
 PokemonEnemy::PokemonEnemy() :
-    Pokemon()
+    Pokemon(), currentPoint(0)
 {
 
 }
 
-PokemonEnemy::PokemonEnemy(int beginX, int beginY, int s) :
-    Pokemon(beginX, beginY, s)
+PokemonEnemy::PokemonEnemy(float beginX, float beginY, float s) :
+    Pokemon(beginX, beginY, s), currentPoint(0)
 {
 
 }
@@ -17,7 +19,38 @@ PokemonEnemy::~PokemonEnemy()
 
 }
 
-void PokemonEnemy::addInPath(int x, int y)
+void PokemonEnemy::addInPath(float x, float y)
 {
-    path.push_back(std::make_unique<QPoint>(x, y));
+    path.push_back(std::make_unique<QPointF>(x, y));
+}
+
+void PokemonEnemy::update(float dt, unsigned int numPkmn, bool debug)
+{
+    // no next point
+    if(currentPoint+1 >= path.size())
+        return;
+
+    QPointF* nextPoint = path[currentPoint+1].get();
+
+    QVector2D direction(nextPoint->x() - position.x(),
+                        nextPoint->y() - position.y());
+
+    // sqrt costs a lot, so I calculate the square
+    float distanceSquare = direction.x() * direction.x() + direction.y() * direction.y();
+
+    // comparing square...
+    if(distanceSquare <= speed * speed * dt * dt)
+    {
+        position = *nextPoint;
+        currentPoint++;
+        if(debug)
+            qDebug() << "Position[" << numPkmn << "]: " << position ;
+        return;
+    }
+
+    direction.normalize();
+    position += QPointF(direction.x(), direction.y()) * speed * dt;
+
+    if(debug)
+        qDebug() << "Position[" << numPkmn << "]: " << position ;
 }

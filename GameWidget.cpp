@@ -1,34 +1,29 @@
 #include "GameWidget.h"
 
-#include<QPainter>
+#include <QPainter>
 #include <QDebug>
 
 GameWidget::GameWidget(QWidget* parent)
     : QWidget{parent}
 {
     timer = new QTimer(this);
-    game = new Game();
+    game = std::make_unique<Game>();  // passage de pointeur à smart pointeur -> verif que tout est OK
     clickPosition = QPoint(-100, -100);
 
     connect(timer, &QTimer::timeout, this, &GameWidget::updateGame);
 
+    elapsedTimer.start();
     timer->start(16);
 }
 
 GameWidget::~GameWidget()
 {
-    delete game;
-    game = nullptr;
 }
 
 void GameWidget::updateGame()
 {
-    /*circleX += 1;
-    if(circleX + 100 >= this->width())
-    {
-        circleX = 0;
-    }*/
-    game->update();
+    float dt = elapsedTimer.restart() / 1000.0;
+    game->update(dt); // todo deltatime
     update(); // fct from QWidget. Calls paintEvent
 }
 
@@ -39,11 +34,6 @@ void GameWidget::paintEvent(QPaintEvent* event)
 
     for(unsigned int numPkmn=0; numPkmn<nbPokemonEnemy; ++numPkmn)
         painter.drawEllipse(game->getPokemonEnemyX(numPkmn),game->getPokemonEnemyY(numPkmn),100,100);
-    /*painter.drawEllipse(clickPosition.x() - 25,
-                        clickPosition.y() - 25,
-                        50,
-                        50);
-*/
 }
 
 void GameWidget::mousePressEvent(QMouseEvent* event)

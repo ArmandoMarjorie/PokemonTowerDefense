@@ -6,14 +6,17 @@
 #include <QWidget>
 #include <QTimer>
 #include <QMouseEvent>
+#include <QElapsedTimer>
 
 class GameWidget : public QWidget
 {
     Q_OBJECT
+
 private:
     QTimer* timer = nullptr;
     QPoint clickPosition;
-    Game* game;
+    QElapsedTimer elapsedTimer;
+    std::unique_ptr<Game> game;
 
 private slots:
     void updateGame();

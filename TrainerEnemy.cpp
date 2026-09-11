@@ -4,9 +4,15 @@
 
 TrainerEnemy::TrainerEnemy()
 {
-    addPokemon(100, 100, 1);
-    addPokemon(200, 200, 2);
-    addPokemon(300, 300, 3);
+    addPokemon(100, 100, 45.0);
+    addInPath(0,100,100);
+    addInPath(0,300,100);
+    addInPath(0,300,300);
+
+    addPokemon(0, 200, 60.0);
+    addInPath(1,0,200);
+    addInPath(1,200,200);
+    addInPath(1,200,400);
 }
 
 TrainerEnemy::~TrainerEnemy()
@@ -26,16 +32,22 @@ PokemonEnemy* TrainerEnemy::getPokemonEnemy(unsigned int numPkmn) const
     return nullptr;
 }
 
-void TrainerEnemy::addPokemon(int x,
-                              int y,
-                              int speed)
+void TrainerEnemy::addPokemon(float x,
+                              float y,
+                              float speed)
 {
     if(team.size() < NB_POKEMON_MAX)
         team.push_back(std::make_unique<PokemonEnemy>(x, y, speed));
 }
 
-void TrainerEnemy::update()
+void TrainerEnemy::addInPath(unsigned int numPkmn, float x, float y)
+{
+    if(!team.empty() && numPkmn < team.size())
+        team[numPkmn]->addInPath(x, y);
+}
+
+void TrainerEnemy::update(float dt)
 {
     for (unsigned int i=0; i<team.size(); ++i)
-        team[i]->update(); //Pokemon::update()
+        team[i]->update(dt); //PokemonEnemy::update()
 }

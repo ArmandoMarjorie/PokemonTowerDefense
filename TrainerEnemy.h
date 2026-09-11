@@ -9,17 +9,21 @@
 class TrainerEnemy
 {
 private:
+    std::string name = "";
     std::vector<std::unique_ptr<PokemonEnemy>> team;
 
 public:
     TrainerEnemy();
     ~TrainerEnemy();
-    void update();
+    void update(float dt);
     PokemonEnemy* getPokemonEnemy(unsigned int numPkmn) const;
     unsigned int getNbPokemon() const;
-    void addPokemon(int x,
-                    int y,
-                    int speed);
+    void addPokemon(float x,
+                    float y,
+                    float speed);
+    void addInPath(unsigned int numPkmn,
+                   float x,
+                   float y);
 };
 
 #endif // TRAINERENEMY_H

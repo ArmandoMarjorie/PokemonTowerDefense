@@ -3,11 +3,11 @@
 Pokemon::Pokemon() :
     speed(1.0)
 {
-    position.setX(100);
-    position.setY(100);
+    position.setX(100.0);
+    position.setY(100.0);
 }
 
-Pokemon::Pokemon(int beginX, int beginY, int s) :
+Pokemon::Pokemon(float beginX, float beginY, float s) :
     speed(s)
 {
     position.setX(beginX);
@@ -21,16 +21,16 @@ Pokemon::~Pokemon()
 
 void Pokemon::update()
 {
-    position.setX(position.x() + speed);
+    //position.setX(position.x() + speed);
     //x += speed;
 }
 
-int Pokemon::getX() const
+float Pokemon::getX() const
 {
     return position.x();
 }
 
-int Pokemon::getY() const
+float Pokemon::getY() const
 {
     return position.y();
 }

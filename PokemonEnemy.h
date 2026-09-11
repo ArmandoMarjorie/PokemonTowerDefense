@@ -4,18 +4,22 @@
 #include "Pokemon.h"
 
 #include <QPoint>
+#include <QVector2D>
 #include <vector>
 #include <memory>
 
 class PokemonEnemy : public Pokemon
 {
 private:
-    std::vector<std::unique_ptr<QPoint>> path;
+    std::vector<std::unique_ptr<QPointF>> path;
+    unsigned int currentPoint; // current index in vector path
+
 public:
     PokemonEnemy();
-    PokemonEnemy(int beginX, int beginY, int s);
+    PokemonEnemy(float beginX, float beginY, float s);
     ~PokemonEnemy();
-    void addInPath(int x, int y);
+    void addInPath(float x, float y);
+    void update(float dt, unsigned int numPkmn=0, bool debug=false);
 };
 
 #endif // POKEMONENEMY_H

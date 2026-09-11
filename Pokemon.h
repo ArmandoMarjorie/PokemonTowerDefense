@@ -14,23 +14,23 @@ protected:
 
     // Statistiques
     int lvl;
-    int speed; // passer à float plus tard
+    float speed; // passer à float plus tard
     float pv;
     int atk;
     int def;
     int atkSpe;
     int defSpe;
 
-    // Current position : QPoint or just int x int y ?
-    QPoint position;
+    // Current position : QPointF or just float x float y ?
+    QPointF position;
 
 public:
     Pokemon();
-    Pokemon(int beginX, int beginY, int s);
+    Pokemon(float beginX, float beginY, float s);
     ~Pokemon();
     void update();
-    int getX() const;
-    int getY() const;
+    float getX() const;
+    float getY() const;
 };
 
 #endif // POKEMON_H
