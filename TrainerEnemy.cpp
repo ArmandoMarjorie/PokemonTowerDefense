@@ -1,5 +1,7 @@
 #include "TrainerEnemy.h"
 
+#include <QDebug>
+
 #define NB_POKEMON_MAX 6
 
 TrainerEnemy::TrainerEnemy()
@@ -44,6 +46,31 @@ void TrainerEnemy::addInPath(unsigned int numPkmn, float x, float y)
 {
     if(!team.empty() && numPkmn < team.size())
         team[numPkmn]->addInPath(x, y);
+}
+
+const QPointF* TrainerEnemy::getPathPoint(unsigned int numPkmn, unsigned int numPoint) const
+{
+    if(!team.empty() && numPkmn < team.size())
+        return team[numPkmn]->getPathPoint(numPoint);
+    return nullptr;
+}
+
+unsigned int TrainerEnemy::getPathSize(unsigned int numPkmn) const
+{
+    if(!team.empty() && numPkmn < team.size())
+        return team[numPkmn]->getPathSize();
+    return 0;
+}
+
+void TrainerEnemy::printPath(unsigned int numPkmn)
+{
+    if(!team.empty() && numPkmn < team.size())
+    {
+        qDebug() << "PATH NUM:" << numPkmn << "\n";
+        team[numPkmn]->printPath();
+    }
+    else
+        qDebug() << "Pokemon NUM:" << numPkmn << " does not exist.\n";
 }
 
 void TrainerEnemy::update(float dt)

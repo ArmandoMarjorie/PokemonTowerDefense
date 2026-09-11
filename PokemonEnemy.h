@@ -18,7 +18,14 @@ public:
     PokemonEnemy();
     PokemonEnemy(float beginX, float beginY, float s);
     ~PokemonEnemy();
+
+
     void addInPath(float x, float y);
+    const QPointF* getPathPoint(unsigned int numPoint) const;
+    unsigned int getPathSize() const;
+    void printPath(); // for debugging purpose
+
+
     void update(float dt, unsigned int numPkmn=0, bool debug=false);
 };
 

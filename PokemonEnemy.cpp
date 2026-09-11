@@ -24,6 +24,24 @@ void PokemonEnemy::addInPath(float x, float y)
     path.push_back(std::make_unique<QPointF>(x, y));
 }
 
+const QPointF* PokemonEnemy::getPathPoint(unsigned int numPoint) const
+{
+    return path[numPoint].get();
+}
+
+unsigned int PokemonEnemy::getPathSize() const
+{
+    return path.size();
+}
+
+void PokemonEnemy::printPath()
+{
+    for(unsigned int i=0; i<path.size(); ++i)
+    {
+        qDebug() << "Point " << i << ": (" << path[i]->x() << ", " << path[i]->y() << ")\n";
+    }
+}
+
 void PokemonEnemy::update(float dt, unsigned int numPkmn, bool debug)
 {
     // no next point
