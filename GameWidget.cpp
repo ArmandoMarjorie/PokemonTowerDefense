@@ -32,7 +32,7 @@ void GameWidget::paintEvent(QPaintEvent* event)
 {
     QPainter painter(this);
 
-    map->draw(painter, this->size());
+    map->drawGrid(painter, this->size());
 
     /*
     unsigned int nbPokemonEnemy = game->getNbPokemonEnemy();

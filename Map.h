@@ -17,12 +17,13 @@ private:
     unsigned int tileHeight;
 
     QPointF conversionIsometric(unsigned int x, unsigned int y, const QSize& size) const;
+    void drawTile(QPainter& painter, QPointF centerTile, const QSize& size) const;
 
 public:
     Map();
     ~Map();
 
-    void draw(QPainter& painter, const QSize& size) const;
+    void drawGrid(QPainter& painter, const QSize& size) const;
 };
 
 #endif // MAP_H
