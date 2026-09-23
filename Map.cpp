@@ -12,11 +12,11 @@ Map::~Map()
 
 void Map::drawGrid(QPainter& painter, const QSize &size) const
 {
-    for(unsigned int i=0; i<width; ++i)
+    for(unsigned int x=0; x<width; ++x)
     {
-        for(unsigned int j=0; j<height; ++j)
+        for(unsigned int y=0; y<height; ++y)
         {
-            QPointF centerTile = conversionIsometric(i, j, size);
+            QPointF centerTile = conversionIsometric(x, y, size);
             QPolygonF tile;
 
             tile << QPointF(centerTile.x(), centerTile.y() - tileHeight * 0.5)
@@ -29,7 +29,9 @@ void Map::drawGrid(QPainter& painter, const QSize &size) const
     }
 }
 
-QPointF Map::conversionIsometric(unsigned int x, unsigned int y, const QSize& size) const
+QPointF Map::conversionIsometric(unsigned int x,
+                                 unsigned int y,
+                                 const QSize &size) const
 {
     // Grid's center
     qreal offsetX = (width-1) * 0.5;

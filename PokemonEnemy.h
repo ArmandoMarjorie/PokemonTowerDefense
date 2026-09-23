@@ -2,6 +2,7 @@
 #define POKEMONENEMY_H
 
 #include "Pokemon.h"
+#include "Map.h"
 
 #include <QPoint>
 #include <QVector2D>
@@ -11,22 +12,27 @@
 class PokemonEnemy : public Pokemon
 {
 private:
-    std::vector<std::unique_ptr<QPointF>> path;
+    std::vector<std::unique_ptr<QPoint>> path; // contains tiles coordinates
     unsigned int currentPoint; // current index in vector path
+    bool positionInitialized = false;
 
 public:
     PokemonEnemy();
-    PokemonEnemy(float beginX, float beginY, float s);
+    PokemonEnemy(float s);
     ~PokemonEnemy();
 
 
-    void addInPath(float x, float y);
-    const QPointF* getPathPoint(unsigned int numPoint) const;
+    void addInPath(unsigned int x, unsigned int y);
+    const QPoint* getPathPoint(unsigned int numPoint) const;
     unsigned int getPathSize() const;
     void printPath(); // for debugging purpose
+    void initPositionOnScreen(const Map& map, const QSize& size);
 
-
-    void update(float dt, unsigned int numPkmn=0, bool debug=false);
+    void update(float dt,
+                const Map& map,
+                const QSize& size,
+                unsigned int numPkmn=0,
+                bool debug=false);
 };
 
 #endif // POKEMONENEMY_H

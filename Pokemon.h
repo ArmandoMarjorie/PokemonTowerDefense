@@ -2,6 +2,7 @@
 #define POKEMON_H
 
 #include "PokemonType.h"
+#include "Map.h"
 
 #include <QPoint>
 #include <string>
@@ -21,17 +22,18 @@ protected:
     int atkSpe;
     int defSpe;
 
-    // Current position
-    QPointF position;
+    // Current position on screen (with isometric projection)
+    QPointF positionOnScreen;
 
 public:
     Pokemon();
-    Pokemon(float beginX, float beginY, float s);
+    Pokemon(float s);
     ~Pokemon();
     void update();
     const QPointF& getPosition() const;
-    float getX() const;
-    float getY() const;
+    void initPosition(const Map& map, const QSize& size);
+    qreal getX() const;
+    qreal getY() const;
 };
 
 #endif // POKEMON_H

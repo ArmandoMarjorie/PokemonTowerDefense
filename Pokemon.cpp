@@ -3,15 +3,11 @@
 Pokemon::Pokemon() :
     speed(1.0)
 {
-    position.setX(100.0);
-    position.setY(100.0);
 }
 
-Pokemon::Pokemon(float beginX, float beginY, float s) :
+Pokemon::Pokemon(float s) :
     speed(s)
 {
-    position.setX(beginX);
-    position.setY(beginY);
 }
 
 Pokemon::~Pokemon()
@@ -26,15 +22,15 @@ void Pokemon::update()
 
 const QPointF& Pokemon::getPosition() const
 {
-    return position;
+    return positionOnScreen;
 }
 
-float Pokemon::getX() const
+qreal Pokemon::getX() const
 {
-    return position.x();
+    return positionOnScreen.x();
 }
 
-float Pokemon::getY() const
+qreal Pokemon::getY() const
 {
-    return position.y();
+    return positionOnScreen.y();
 }

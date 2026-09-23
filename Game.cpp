@@ -30,7 +30,7 @@ unsigned int Game::getNbPokemonEnemy() const
     return trainerEnemy->getNbPokemon();
 }
 
-const QPointF* Game::getEnemyPathPoint(unsigned int numPkmn, unsigned int numPoint) const
+const QPoint* Game::getEnemyPathPoint(unsigned int numPkmn, unsigned int numPoint) const
 {
     return trainerEnemy->getPathPoint(numPkmn, numPoint);
 }
@@ -45,8 +45,10 @@ void Game::printPath(unsigned int numPkmn)
     trainerEnemy->printPath(numPkmn);
 }
 
-void Game::update(float dt)
+void Game::update(float dt,
+                  const Map& map,
+                  const QSize& size)
 {
-    trainerEnemy->update(dt);
+    trainerEnemy->update(dt, map, size);
 }
 
