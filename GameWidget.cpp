@@ -34,6 +34,7 @@ void GameWidget::paintEvent(QPaintEvent* event)
 
     map->draw(painter, this->size());
 
+    /*
     unsigned int nbPokemonEnemy = game->getNbPokemonEnemy();
     for(unsigned int numPkmn=0; numPkmn<nbPokemonEnemy; ++numPkmn)
     {
@@ -54,6 +55,7 @@ void GameWidget::paintEvent(QPaintEvent* event)
 
         //game->printPath(numPkmn);
     }
+    */
 }
 /*
 void GameWidget::mousePressEvent(QMouseEvent* event)

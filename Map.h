@@ -8,10 +8,15 @@
 class Map
 {
 private:
-    QPointF topLeft;
-    QPointF topRight;
-    QPointF bottomLeft;
-    QPointF bottomRight;
+    // number of tiles forming the grid
+    unsigned int width; // row
+    unsigned int height; // col
+
+    // Size of tiles
+    unsigned int tileWidth;
+    unsigned int tileHeight;
+
+    QPointF conversionIsometric(unsigned int x, unsigned int y, const QSize& size) const;
 
 public:
     Map();
