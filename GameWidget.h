@@ -8,6 +8,7 @@
 #include <QTimer>
 #include <QMouseEvent>
 #include <QElapsedTimer>
+#include <QKeyEvent>
 
 class GameWidget : public QWidget
 {
@@ -29,6 +30,7 @@ public:
 
 protected:
     void paintEvent(QPaintEvent* event) override;
+    void keyPressEvent(QKeyEvent* event) override;
     //void mousePressEvent(QMouseEvent* event) override;
 
 signals:

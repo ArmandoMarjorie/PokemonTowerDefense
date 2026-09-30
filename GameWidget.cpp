@@ -6,6 +6,9 @@
 GameWidget::GameWidget(QWidget* parent)
     : QWidget{parent}
 {
+    setFocusPolicy(Qt::StrongFocus);
+    setFocus();
+
     timer = new QTimer(this);
     game = std::make_unique<Game>();
     map = std::make_unique<Map>();
@@ -57,6 +60,44 @@ void GameWidget::paintEvent(QPaintEvent* event)
         //game->printPath(numPkmn);
     }
 }
+
+void GameWidget::keyPressEvent(QKeyEvent* event)
+{
+    switch(event->key())
+    {
+        // déplacement vers le haut
+        case Qt::Key_Z:
+            qDebug() << "Z";
+            game->movePlayerPokemonOnGrid(0, -1);
+            break;
+
+        // déplacement vers le bas
+        case Qt::Key_S:
+            qDebug() << "S";
+            game->movePlayerPokemonOnGrid(0, 1);
+            break;
+
+        // déplacement vers la gauche
+        case Qt::Key_Q:
+            //qDebug() << "Q";
+            game->movePlayerPokemonOnGrid(-1, 0);
+            break;
+
+        // déplacement vers la droite
+        case Qt::Key_D:
+            qDebug() << "D";
+            game->movePlayerPokemonOnGrid(1, 0);
+            break;
+
+        default:
+            qDebug() << event->key();
+            break;
+    }
+
+    update();
+}
+
+
 /*
 void GameWidget::mousePressEvent(QMouseEvent* event)
 {

@@ -2,6 +2,7 @@
 
 Game::Game()
 {
+    player = std::make_unique<Player>();
     trainerEnemy = std::make_unique<TrainerEnemy>();
 }
 
@@ -9,6 +10,16 @@ Game::~Game()
 {
 
 }
+
+/* -------------- TRAINER ENEMY -------------- */
+
+void Game::movePlayerPokemonOnGrid(int dx, int dy)
+{
+    player->movePokemonOnGrid(dx, dy);
+}
+
+
+/* -------------- TRAINER ENEMY -------------- */
 
 const QPointF& Game::getPokemonEnemyPosition(unsigned int numPkmn) const
 {

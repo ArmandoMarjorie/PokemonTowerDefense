@@ -30,6 +30,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Pokemon.h Pokemon.cpp
         PokemonType.h
         Map.h Map.cpp
+        Player.h Player.cpp
+        PokemonPlayer.h PokemonPlayer.cpp
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET PokemonTowerDefense APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
