@@ -9,6 +9,9 @@
 #include <QMouseEvent>
 #include <QElapsedTimer>
 #include <QKeyEvent>
+#include <QPen>
+#include <QBrush>
+#include <QColor>
 
 class GameWidget : public QWidget
 {

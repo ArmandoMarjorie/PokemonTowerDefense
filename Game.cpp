@@ -11,13 +11,17 @@ Game::~Game()
 
 }
 
-/* -------------- TRAINER ENEMY -------------- */
+/* -------------- PLAYER -------------- */
 
 void Game::movePlayerPokemonOnGrid(int dx, int dy)
 {
     player->movePokemonOnGrid(dx, dy);
 }
 
+const QPoint* Game::getPlayerPositionOnGrid() const
+{
+    return player->getPokemonPositionOnGrid();
+}
 
 /* -------------- TRAINER ENEMY -------------- */
 

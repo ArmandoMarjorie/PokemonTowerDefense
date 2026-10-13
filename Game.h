@@ -18,6 +18,7 @@ public:
     void update(float dt, const Map &map, const QSize& size);
 
     void movePlayerPokemonOnGrid(int dx, int dy);
+    const QPoint* getPlayerPositionOnGrid() const;
 
     const QPointF& getPokemonEnemyPosition(unsigned int numPkmn) const;
     float getPokemonEnemyX(unsigned int numPkmn) const;
