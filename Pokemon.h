@@ -15,7 +15,7 @@ protected:
 
     // Statistiques
     int lvl;
-    float speed; // passer à float plus tard
+    float speed;
     float pv;
     int atk;
     int def;
