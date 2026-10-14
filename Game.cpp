@@ -13,14 +13,16 @@ Game::~Game()
 
 /* -------------- PLAYER -------------- */
 
-void Game::movePlayerPokemonOnGrid(int dx, int dy)
+void Game::setPlayerNextPositionOnScreen(int dx, int dy,
+                                         const Map& map,
+                                         const QSize& size)
 {
-    player->movePokemonOnGrid(dx, dy);
+    player->setNextPositionOnScreen(dx, dy, map, size);
 }
 
-const QPoint* Game::getPlayerPositionOnGrid() const
+const QPointF& Game::getPlayerPosition() const
 {
-    return player->getPokemonPositionOnGrid();
+    return player->getCurrentPokemon()->getPosition();
 }
 
 /* -------------- TRAINER ENEMY -------------- */
@@ -64,6 +66,7 @@ void Game::update(float dt,
                   const Map& map,
                   const QSize& size)
 {
+    player->update(dt, map, size);
     trainerEnemy->update(dt, map, size);
 }
 

@@ -25,6 +25,11 @@ protected:
     // Current position on screen (with isometric projection)
     QPointF positionOnScreen;
 
+    //todo: use it in PokemonEnemy
+    QPointF nextPositionOnScreen; /*!< Target position when the pokemon moves, with isometric projection. */
+
+    bool positionInitialized = false;
+
 public:
     Pokemon();
     Pokemon(float s);

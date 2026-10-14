@@ -14,7 +14,6 @@ class PokemonEnemy : public Pokemon
 private:
     std::vector<std::unique_ptr<QPoint>> path; // contains tiles coordinates
     unsigned int currentPoint; // current index in vector path
-    bool positionInitialized = false;
 
 public:
     PokemonEnemy();

@@ -18,7 +18,7 @@ void PokemonEnemy::initPositionOnScreen(const Map& map, const QSize& size)
 {
     if(path.empty())
         return;
-    QPoint* firstPoint = path[0].get();
+    const QPoint* firstPoint = path[0].get();
     positionOnScreen = map.conversionIsometric(firstPoint->x(), firstPoint->y(), size);
 }
 
@@ -58,13 +58,7 @@ void PokemonEnemy::update(float dt,
 {
     if(!positionInitialized && !path.empty())
     {
-        QPoint* startPoint = path[currentPoint].get();
-
-        positionOnScreen = map.conversionIsometric(
-            startPoint->x(),
-            startPoint->y(),
-            size);
-
+        initPositionOnScreen(map, size);
         positionInitialized = true;
     }
 

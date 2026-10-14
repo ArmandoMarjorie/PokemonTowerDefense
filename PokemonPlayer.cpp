@@ -13,13 +13,13 @@ PokemonPlayer::PokemonPlayer(float speed) :
     positionOnGrid.setY(5);
 }
 
-const QPoint* PokemonPlayer::getPositionOnGrid() const
+void PokemonPlayer::initPositionOnScreen(const Map& map, const QSize& size)
 {
-    return &positionOnGrid;
+    positionOnScreen = map.conversionIsometric(positionOnGrid.x(), positionOnGrid.y(), size);
 }
 
-void PokemonPlayer::setNextPositionOnScreen(unsigned int dx,
-                                    unsigned int dy,
+void PokemonPlayer::setNextPositionOnScreen(int dx,
+                                    int dy,
                                     const Map& map,
                                     const QSize& size)
 {
@@ -35,9 +35,34 @@ void PokemonPlayer::setNextPositionOnScreen(unsigned int dx,
     //qDebug() << positionOnGrid;
 }
 
-void PokemonPlayer::update(float dt)
+void PokemonPlayer::update(float dt, const Map& map, const QSize& size)
 {
+    if(!positionInitialized)
+    {
+        initPositionOnScreen(map, size);
+        positionInitialized = true;
+    }
 
+    // nothing to update
+    if(!isMoving)
+        return;
+
+    QVector2D direction(nextPositionOnScreen.x() - positionOnScreen.x(),
+                        nextPositionOnScreen.y() - positionOnScreen.y());
+
+    // sqrt costs a lot, so I calculate the square
+    qreal distanceSquare = direction.x() * direction.x() + direction.y() * direction.y();
+
+    // comparing square...
+    if(distanceSquare <= speed * speed * dt * dt)
+    {
+        positionOnScreen = nextPositionOnScreen;
+        isMoving = false;
+        return;
+    }
+
+    direction.normalize();
+    positionOnScreen += QPointF(direction.x(), direction.y()) * speed * dt;
 }
 
 

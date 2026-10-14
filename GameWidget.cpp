@@ -47,13 +47,15 @@ void GameWidget::paintEvent(QPaintEvent* event)
     }
 
     // Draw the pokemon player
+    /*
     const QPoint* gridPosition = game->getPlayerPositionOnGrid();
 
     QPointF position = map->conversionIsometric(gridPosition->x(),
                                                 gridPosition->y(),
                                                 this->size());
-
-    painter.drawEllipse(position, 15, 15);
+    */
+    const QPointF& playerPosition = game->getPlayerPosition();
+    painter.drawEllipse(playerPosition, 15, 15);
 }
 
 void GameWidget::keyPressEvent(QKeyEvent* event)
@@ -63,25 +65,25 @@ void GameWidget::keyPressEvent(QKeyEvent* event)
         // déplacement vers le haut
         case Qt::Key_Z:
             qDebug() << "Z";
-            game->movePlayerPokemonOnGrid(0, -1);
+            game->setPlayerNextPositionOnScreen(0, -1, *map.get(), size());
             break;
 
         // déplacement vers le bas
         case Qt::Key_S:
             qDebug() << "S";
-            game->movePlayerPokemonOnGrid(0, 1);
+            game->setPlayerNextPositionOnScreen(0, 1, *map.get(), size());
             break;
 
         // déplacement vers la gauche
         case Qt::Key_Q:
             //qDebug() << "Q";
-            game->movePlayerPokemonOnGrid(-1, 0);
+            game->setPlayerNextPositionOnScreen(-1, 0, *map.get(), size());
             break;
 
         // déplacement vers la droite
         case Qt::Key_D:
             qDebug() << "D";
-            game->movePlayerPokemonOnGrid(1, 0);
+            game->setPlayerNextPositionOnScreen(1, 0, *map.get(), size());
             break;
 
         default:
