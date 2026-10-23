@@ -12,6 +12,7 @@
     This class represents a pokemon belonging to the player.
     It differs from the Pokemon Enemy class, as this pokemon does not
     have a path nor an AI.
+    Inherits from the Pokemon class.
 */
 
 class PokemonPlayer  : public Pokemon

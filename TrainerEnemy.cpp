@@ -21,15 +21,17 @@ TrainerEnemy::TrainerEnemy()
     addInPath(1,9,3);
 }
 
-TrainerEnemy::~TrainerEnemy()
+void TrainerEnemy::update(float dt,
+                          const Map& map,
+                          const QSize& size)
 {
-
+    for (unsigned int numPkmn=0; numPkmn<team.size(); ++numPkmn)
+    {
+        team[numPkmn]->update(dt, map, size); //PokemonEnemy::update()
+    }
 }
 
-unsigned int TrainerEnemy::getNbPokemon() const
-{
-    return team.size();
-}
+/* ============= Methods related to pokemons ============= */
 
 PokemonEnemy* TrainerEnemy::getPokemonEnemy(unsigned int numPkmn) const
 {
@@ -38,11 +40,18 @@ PokemonEnemy* TrainerEnemy::getPokemonEnemy(unsigned int numPkmn) const
     return nullptr;
 }
 
+unsigned int TrainerEnemy::getNbPokemon() const
+{
+    return team.size();
+}
+
 void TrainerEnemy::addPokemon(float speed)
 {
     if(team.size() < NB_POKEMON_MAX)
         team.push_back(std::make_unique<PokemonEnemy>(speed));
 }
+
+/* ============= Methods related to paths ============= */
 
 void TrainerEnemy::addInPath(unsigned int numPkmn, unsigned int x, unsigned int y)
 {
@@ -74,20 +83,3 @@ void TrainerEnemy::printPath(unsigned int numPkmn)
     else
         qDebug() << "Pokemon NUM:" << numPkmn << " does not exist.\n";
 }
-
-void TrainerEnemy::update(float dt,
-                          const Map& map,
-                          const QSize& size)
-{
-    for (unsigned int numPkmn=0; numPkmn<team.size(); ++numPkmn)
-    {
-        team[numPkmn]->update(dt, map, size); //PokemonEnemy::update()
-    }
-}
-
-
-
-
-
-
-
